@@ -6,16 +6,16 @@ def parse(l):
     r = re.search(regex, l).groups()
     return (r[3], r[:3])
 
-table = {}
+cache = {}
 def value(a):
-    global table, data
+    global cache, data
 
     if re.search('[a-z]', a):
         try:
-            return table[a]
+            return cache[a]
         except KeyError:
             val = evaluate(data[a])
-            table[a] = val
+            cache[a] = val
             return val
     else:
         return int(a)
